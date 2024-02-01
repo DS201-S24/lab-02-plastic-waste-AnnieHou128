@@ -1,7 +1,7 @@
 ---
 title: "Lab 02 - Plastic Waste"
-author: "Insert your name here"
-date: "Insert date here"
+author: "Annie Hou"
+date: "02/01/2024"
 output: html_document
 ---
 
@@ -19,21 +19,29 @@ plastic_waste <- read_csv("data/plastic-waste.csv")
 
 ### Exercise 1
 
-Remove this text, and add your answer for Exercise 1 here.
+With the histograms, we could see that most countries across all continents have relatively low plastic waste per capita because the majority of values concentrated near zero. Particularly, Africa and Asia tend to have more countries that have a low plastic waste per capita close to 0. There exist some countries in North America that have very high plastic waste per capita more than 3.
 
 ```{r plastic-waste-continent}
-# insert code here
+ggplot(data = plastic_waste, aes(x = plastic_waste_per_cap)) +
+  geom_histogram(binwidth = 0.2) +
+  facet_wrap(~continent)
 ```
 
 ### Exercise 2
 
 ```{r plastic-waste-density}
-# insert code here
+ggplot(data = plastic_waste, 
+       mapping = aes(x = plastic_waste_per_cap, 
+                     color = continent, 
+                     fill = continent)) +
+  geom_density(alpha = 0.4)
 ```
 
 ### Exercise 3
 
-Remove this text, and add your answer for Exercise 3 here.
+Because the color and fill aesthetics are mapped to the variables in the data. In this case, they were mapped to the continent variable, so that different colors would be used for different continents.
+
+On the other hand, the alpha level is set outside the aes() function, because it is not mapped to any variable but is a fixed value applied to the geom_density(). All the variables share the same transparency now.
 
 ### Exercise 4
 
