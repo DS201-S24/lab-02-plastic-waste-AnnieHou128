@@ -45,38 +45,56 @@ On the other hand, the alpha level is set outside the aes() function, because it
 
 ### Exercise 4
 
-Remove this text, and add your answer for Exercise 4 here.
+The violin plots reveal the density of the variables at different values and thus provide more information about the distribution than box plots. And violin plots are also more useful in showing the different peaks in the data. Box plots might be easier for us to directly compare the medians and interquartile ranges between groups.
 
 ```{r plastic-waste-violin}
-# insert code here
+ggplot(data = plastic_waste, 
+       mapping = aes(x = continent, 
+                     y = plastic_waste_per_cap)) +
+  geom_violin()
 ```
 
 ### Exercise 5
 
-Remove this text, and add your answer for Exercise 5 here.
+The scatterplot shows a relatively positive relationship between plastic waste per capita and mismanaged plastic waste per capita, because as the plastic waste per capita increases, the mismanged plastic waste per capita also tend to increase. Also, the majority of data points are clustered near the origin, which means that many countries have both low plastic waste per capita and mismanaged plastic waste per capita.
 
 ```{r plastic-waste-mismanaged}
-# insert code here
+ggplot(data = plastic_waste, 
+       mapping = aes(x = plastic_waste_per_cap, 
+                     y = mismanaged_plastic_waste_per_cap )) +
+  geom_point()
 ```
 
 ### Exercise 6
 
-Remove this text, and add your answer for Exercise 6 here.
+I think there's no clear distinctions between the continents because the scatterplot shows a general positive association between plastic waste per capita and mismanaged plastic waste per capita across different continents. For different continents, when the plastic waste per capita increases, the mismanaged plastic waste per capita also tends to increase.
 
 ```{r plastic-waste-mismanaged-continent}
-# insert code here
+ggplot(data = plastic_waste, 
+       mapping = aes(x = plastic_waste_per_cap, 
+                     y = mismanaged_plastic_waste_per_cap,
+                     color = continent)) +
+  geom_point()
 ```
 
 ### Exercise 7
 
-Remove this text, and add your answer for Exercise 7 here.
+The relationship between plastic waste per capita and the coastal population seems to be more linear associated. In the first scatterplot, the data points for total population versus plastic waste per capita seem to be more spreaded, especially for countries with larger populations, so there is no clear trend indicating a linear relationship.
 
 ```{r plastic-waste-population-total}
-# insert code here
+ggplot(data = plastic_waste, 
+       mapping = aes(x = plastic_waste_per_cap, 
+                     y = total_pop,
+                     color = continent)) +
+  geom_point()
 ```
 
 ```{r plastic-waste-population-coastal}
-# insert code here
+ggplot(data = plastic_waste, 
+       mapping = aes(x = plastic_waste_per_cap, 
+                     y = coastal_pop,
+                     color = continent)) +
+  geom_point()
 ```
 
 ### Exercise 8
