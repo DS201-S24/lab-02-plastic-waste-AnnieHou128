@@ -102,10 +102,30 @@ ggplot(data = plastic_waste,
 Remove this text, and add your answer for Exercise 8 here.
 
 ```{r recreate-viz}
-# insert code here
+# Mutate and filter 
+plastic_waste_new <- plastic_waste %>%
+  mutate(coastal_pop_proportion = coastal_pop / total_pop) %>%
+  filter(plastic_waste_per_cap <= 3)
+  
+# Create the plot
+ggplot(data = plastic_waste_new, 
+            mapping = aes(x = coastal_pop_proportion, y = plastic_waste_per_cap, color = continent)) +
+  geom_point() +
+  geom_smooth(data = plastic_waste_new,
+              mapping = aes(x = coastal_pop_proportion, y = plastic_waste_per_cap, color = continent),
+              linetype = "solid", color = "black") + 
+  scale_color_viridis_d()+ 
+  labs(x = 'Coastal population proportion (Coastal / total population)',
+       y = 'Plastic waste per capita',
+       color = 'Continent',
+       title = 'Plastic waste vs. coastal population proportion',
+       subtitle = 'by continent') +
+  theme_minimal() 
+
 ```
 
 ### Exercise 9
 
-Remove this text, and add your answer for Exercise 9 here.
+The smooth line in the middle, which shows the smoothed version of data points, tends to increase over x-axis and indicates an overall trend where the plastic waste per capita tends to increase with the coastal population proportion increasing to a certain point, after which it declines a little bit. Also, countries with less population living in coastal areas (proportion is relatively low) tend to generate less plastic waste per capita, while countries with more people living in coastal areas tend to have more plastic waste per capita. This might be due to coastal activities that generate plastic waste, such as tourism and fishing. However, around the right boundry of the curve, the decreasing trend may indicate that further increases in coastal population proportion may not increase plastic waste per capita anymore, which is similar to the diminishing marginal increases in waste generation. 
 
+Also, since the data points are colored by continents, we can see that some continents such as Africa tend to have low coastal population proportion (more people living far from coastal areas) and low plastic waste per capita, while some continents such as Oceania tend to have higher coastal population proportion (more people living around coastal areas) and higher plastic waste per capita. Therefore, continent might also be a crucial factor that affects plastic waste.
